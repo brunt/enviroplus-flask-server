@@ -28,10 +28,12 @@ def get_cpu_temp():
 
 def get_temp():
     # adjust factor for better results, higher factor to increase temp
-    factor = 0.8
+    factor = 0.7
     raw_temp = bme280.get_temperature()
     cpu_temp = get_cpu_temp()
     calc_temp = cpu_temp - (cpu_temp - raw_temp) / factor
+    # convert to F
+    calc_temp = (calc_temp * 1.8) + 32
     return calc_temp
 
 
